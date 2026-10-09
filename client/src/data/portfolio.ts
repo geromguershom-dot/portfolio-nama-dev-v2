@@ -125,24 +125,28 @@ export const categories: Category[] = ["Site vitrine", "E-commerce", "Applicatio
 
 export const services = [
   {
+    icon: "layout",
     title: "Sites vitrines",
-    text: "Un site rapide, clair et adapté au mobile pour présenter votre activité, vos services et vos réalisations, et vous faire contacter facilement.",
-    tags: "React · Tailwind · Responsive",
+    text: "Un site rapide et clair pour présenter votre activité et vous faire contacter facilement.",
+    points: ["Design adapté au mobile", "Pages services et réalisations", "Contact direct par WhatsApp", "Mise en ligne incluse"],
   },
   {
+    icon: "server",
     title: "Applications web",
-    text: "Des applications complètes avec comptes utilisateurs, API, base de données et tableaux de bord sur mesure.",
-    tags: "Node.js · Express · MongoDB",
+    text: "Des applications complètes avec comptes utilisateurs, base de données et tableaux de bord sur mesure.",
+    points: ["Comptes et rôles (JWT)", "API Node.js / Express", "Base de données MongoDB", "Tableaux de bord"],
   },
   {
+    icon: "cart",
     title: "E-commerce",
-    text: "Une boutique pour présenter vos produits, recevoir des commandes et les gérer depuis un espace d'administration simple.",
-    tags: "Catalogue · Panier · Admin",
+    text: "Une boutique pour présenter vos produits et gérer vos commandes depuis un espace simple.",
+    points: ["Catalogue de produits", "Panier et commandes", "Espace d'administration", "Adapté au mobile"],
   },
   {
+    icon: "rocket",
     title: "Mise en ligne & suivi",
-    text: "Hébergement, nom de domaine et mise en production, pour que votre site soit en ligne et fonctionne sans souci.",
-    tags: "Vercel · Render · MongoDB Atlas",
+    text: "Hébergement et mise en production, pour que votre site soit en ligne et fonctionne sans souci.",
+    points: ["Hébergement Vercel / Render", "Nom de domaine", "Base de données cloud", "Accompagnement après livraison"],
   },
 ];
 
@@ -178,6 +182,38 @@ export const timeline = [
     text: "Réalisation de sites pour des entreprises de Yaoundé, de la maquette à la mise en ligne. Profils actifs sur Fiverr et ComeUp.",
   },
 ];
+
+export const stats = [
+  { value: String(projects.length).padStart(2, "0"), label: "Projets présentés" },
+  { value: "MERN", label: "Stack principale" },
+  { value: "2026", label: "Diplômé, mention excellente" },
+  { value: "2", label: "Plateformes freelance (Fiverr, ComeUp)" },
+];
+
+export const faq = [
+  {
+    q: "Quels types de projets réalisez-vous ?",
+    a: "Des sites vitrines, des applications web full-stack (comptes utilisateurs, base de données, tableaux de bord) et des boutiques en ligne, pour des entreprises locales comme pour des clients à distance.",
+  },
+  {
+    q: "Comment se déroule une collaboration ?",
+    a: "Nous échangeons d'abord sur votre activité et vos objectifs, je vous propose une maquette à valider, puis je développe le site, je le mets en ligne et je vous accompagne après la livraison.",
+  },
+  {
+    q: "Travaillez-vous à distance ?",
+    a: "Oui. Je suis basé à Yaoundé et je travaille avec des clients locaux comme à distance, par WhatsApp, email ou appel.",
+  },
+  {
+    q: "Comment obtenir un devis ?",
+    a: "Décrivez-moi votre projet depuis la page Contact (WhatsApp ou email) et je reviens vers vous avec une proposition adaptée.",
+  },
+  // TODO — ajoute ici tes réponses sur les délais et les tarifs si tu veux les afficher.
+];
+
+export type Testimonial = { quote: string; author: string; role: string };
+
+/** TODO — ajoute de vrais témoignages de clients : la section n'apparaît que s'il y en a. */
+export const testimonials: Testimonial[] = [];
 
 export type Channel = { id: string; label: string; href: string; handle: string };
 

@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "wouter";
 import {
   ArrowUpRight,
@@ -8,12 +8,17 @@ import {
   Mail,
   Menu,
   MessageCircle,
+  Moon,
+  Sun,
   X,
   type LucideIcon,
 } from "lucide-react";
-import { channels, initials, profile } from "@/data/portfolio";
+import { channels, profile } from "@/data/portfolio";
+import { useTheme } from "@/contexts/ThemeContext";
+import Logo from "./Logo";
+import ScrollProgress from "./ScrollProgress";
 
-const channelIcons: Record<string, LucideIcon> = {
+export const channelIcons: Record<string, LucideIcon> = {
   email: Mail,
   whatsapp: MessageCircle,
   linkedin: Linkedin,
@@ -30,44 +35,54 @@ const navItems = [
 ];
 
 function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [location] = useLocation();
+  const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => setOpen(false), [location]);
+
+  const isActive = (href: string) => (href === "/" ? location === "/" : location.startsWith(href));
 
   return (
     <header className="site-header">
-      <Link className="wordmark" href="/" aria-label="Retour à l’accueil">
-        <span className="wordmark-mark">{initials}</span>
-        <span>
-          {profile.name}
-          <small>{profile.location}</small>
-        </span>
-      </Link>
-      <nav className={menuOpen ? "main-nav open" : "main-nav"} aria-label="Navigation principale">
-        {navItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            onClick={() => setMenuOpen(false)}
-            aria-current={location === item.href ? "page" : undefined}
-          >
-            {item.label}
-          </Link>
-        ))}
-      </nav>
-      <div className="header-actions">
-        <span className="header-availability">{profile.availability}</span>
-        <Link className="header-cta" href="/contact">
-          Parlons-nous <ArrowUpRight size={15} />
+      <div className="container header-inner">
+        <Link className="brand" href="/" aria-label="Retour à l’accueil">
+          <Logo />
+          <span className="brand-text">
+            {profile.name}
+            <small>{profile.role}</small>
+          </span>
         </Link>
+        <nav className={open ? "nav open" : "nav"} aria-label="Navigation principale">
+          {navItems.map((item) => (
+            <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="header-actions">
+          {toggleTheme && (
+            <button
+              className="icon-btn"
+              onClick={toggleTheme}
+              aria-label={theme === "dark" ? "Passer en mode clair" : "Passer en mode sombre"}
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          )}
+          <Link className="btn btn-ghost btn-sm" href="/contact">
+            Parlons-nous <ArrowUpRight size={15} />
+          </Link>
+          <button
+            className="icon-btn menu-toggle"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={open}
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
-      <button
-        className="menu-toggle"
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-        aria-expanded={menuOpen}
-      >
-        {menuOpen ? <X size={20} /> : <Menu size={20} />}
-      </button>
     </header>
   );
 }
@@ -76,41 +91,62 @@ function Footer() {
   const social = channels.filter((channel) => channel.id !== "email");
   return (
     <footer className="site-footer">
-      <span>
-        © {new Date().getFullYear()} {profile.name}
-      </span>
-      <div className="social-links">
-        {social.map((channel) => {
-          const Icon = channelIcons[channel.id] ?? ArrowUpRight;
-          return (
-            <a key={channel.id} href={channel.href} target="_blank" rel="noreferrer" aria-label={channel.label}>
-              <Icon size={16} />
-            </a>
-          );
-        })}
+      <div className="container footer-inner">
+        <span>
+          © {new Date().getFullYear()} {profile.name} · {profile.location}
+        </span>
+        <div className="social-links">
+          {social.map((channel) => {
+            const Icon = channelIcons[channel.id] ?? ArrowUpRight;
+            return (
+              <a key={channel.id} href={channel.href} target="_blank" rel="noreferrer" aria-label={channel.label}>
+                <Icon size={16} />
+              </a>
+            );
+          })}
+        </div>
       </div>
-      <a className="back-top" href="#top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
-        Retour en haut <ArrowUpRight size={15} />
-      </a>
     </footer>
   );
 }
 
-export { channelIcons };
+/** Fait apparaître en douceur les éléments `.reveal` quand ils entrent à l'écran. */
+function useReveal(dependency: string) {
+  useEffect(() => {
+    const items = Array.from(document.querySelectorAll<HTMLElement>(".reveal:not(.is-visible)"));
+    if (typeof IntersectionObserver === "undefined" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      items.forEach((item) => item.classList.add("is-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+    items.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, [dependency]);
+}
 
-export default function SiteLayout({ children, section }: { children: ReactNode; section?: string }) {
+export default function SiteLayout({ children }: { children: ReactNode }) {
+  const [location] = useLocation();
+  useReveal(location);
+
   return (
-    <main className="site-shell" id="top">
+    <>
       <a className="skip-link" href="#content">Aller au contenu</a>
+      <ScrollProgress />
       <Header />
-      {section && (
-        <div className="page-topline">
-          <span>Portfolio / {new Date().getFullYear()}</span>
-          <span>{section}</span>
-        </div>
-      )}
-      <div id="content">{children}</div>
+      <main id="content" className="page-fade">
+        {children}
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
