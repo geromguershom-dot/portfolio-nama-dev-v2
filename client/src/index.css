@@ -143,7 +143,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .browser { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-soft); }
 .browser-bar { display: flex; gap: 6px; padding: 9px 12px; border-bottom: 1px solid var(--line); }
 .browser-bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
-.browser img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: transform 0.6s var(--ease); }
+.browser img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; transition: transform 0.6s var(--ease); }
 .project-card:hover .browser img { transform: scale(1.04); }
 .project-body { display: flex; flex-direction: column; flex: 1; gap: 8px; padding: 20px 22px 24px; }
 .project-meta { margin: 0; color: var(--cyan); font-size: 11px; }

@@ -20,14 +20,14 @@ export const profile = {
   bio: "Développeur full-stack basé à Yaoundé, formé à Localhost Academy (stack MERN : MongoDB, Express, React, Node.js) et diplômé en août 2026 avec la mention excellente. Je réalise des sites vitrines, des applications web et des boutiques en ligne pour des clients locaux et à distance, de la maquette jusqu'à la mise en ligne.",
 
   // TODO — à remplir (laisser "" pour masquer)
-  email: "",
-  whatsapp: "", // format international sans + ni espaces, ex. "2376XXXXXXXX"
-  linkedin: "", // ex. "https://www.linkedin.com/in/ton-profil"
+  email: "geromguershom@gmail.com",
+  whatsapp: "237682091580", // format international sans + ni espaces
+  linkedin: "https://www.linkedin.com/in/gerom-guershom-4802203b9",
   comeup: "", // lien complet de ton profil ComeUp
   photo: "", // ex. "/photo.jpg" (fichier à placer dans client/public/)
 
   github: "https://github.com/geromguershom-dot",
-  fiverr: "https://www.fiverr.com/guershom_",
+  fiverr: "", // TODO — remets https://www.fiverr.com/guershom_ quand ton profil est en ligne
   website: "",
 };
 
@@ -55,14 +55,15 @@ export const projects: Project[] = [
     id: "maestro-solutions",
     title: "Maestro Solutions",
     category: "Site vitrine",
-    kind: "Site vitrine — climatisation & plomberie",
+    kind: "Site vitrine — climatisation, froid & plomberie",
     year: "2026",
     client: "Salomon Fotso — Calor & Frío, Yaoundé",
     description:
-      "Site professionnel pour une entreprise de climatisation et de plomberie de Yaoundé forte de 15 ans d'expérience : présentation des services, galerie et prise de contact. Mon premier projet client rémunéré.",
+      "Site professionnel pour une entreprise de climatisation, froid industriel, électricité et plomberie de Yaoundé, forte de 15 ans d'expérience : services, réalisations, formations, avis clients et demande de devis. Mon premier projet client rémunéré.",
     role: "Conception, développement et mise en ligne",
     stack: ["React", "Vite", "Tailwind CSS", "Vercel"],
-    cover: "/projects/maestro-solutions.svg",
+    cover: "/projects/maestro-solutions-1.webp",
+    screenshots: ["/projects/maestro-solutions-1.webp", "/projects/maestro-solutions-2.webp", "/projects/maestro-solutions-3.webp"],
     liveUrl: "https://maestro-solutions-calor-frio.vercel.app",
     repoUrl: "", // TODO
   },
@@ -73,10 +74,11 @@ export const projects: Project[] = [
     kind: "Plateforme e-learning full-stack (MERN)",
     year: "2026",
     description:
-      "Plateforme de tutoriels vidéo pour étudiants, avec authentification multi-rôles, envoi de vidéos et suivi. Projet de fin de formation, soutenu en août 2026.",
+      "Plateforme d'apprentissage en ligne : tutoriels vidéo, quiz, forum d'échange entre étudiants et enseignants et suivi de la progression, avec authentification multi-rôles. Projet de fin de formation, soutenu en août 2026.",
     role: "Conception et développement full-stack",
     stack: ["React", "Node.js", "Express", "MongoDB Atlas", "JWT", "Cloudinary", "Vercel", "Render"],
-    cover: "/projects/devlearn.svg",
+    cover: "/projects/devlearn-1.webp",
+    screenshots: ["/projects/devlearn-1.webp", "/projects/devlearn-2.webp"],
     liveUrl: "", // TODO
     repoUrl: "", // TODO
   },
@@ -179,7 +181,7 @@ export const timeline = [
   {
     label: "Freelance",
     title: "Sites web pour clients locaux",
-    text: "Réalisation de sites pour des entreprises de Yaoundé, de la maquette à la mise en ligne. Profils actifs sur Fiverr et ComeUp.",
+    text: "Réalisation de sites pour des entreprises de Yaoundé, de la maquette à la mise en ligne.",
   },
 ];
 
@@ -187,7 +189,7 @@ export const stats = [
   { value: String(projects.length).padStart(2, "0"), label: "Projets présentés" },
   { value: "MERN", label: "Stack principale" },
   { value: "2026", label: "Diplômé, mention excellente" },
-  { value: "2", label: "Plateformes freelance (Fiverr, ComeUp)" },
+  { value: "Yaoundé", label: "Basé au Cameroun, disponible à distance" },
 ];
 
 export const faq = [
@@ -217,15 +219,22 @@ export const testimonials: Testimonial[] = [];
 
 export type Channel = { id: string; label: string; href: string; handle: string };
 
+const formatPhone = (number: string) =>
+  number.startsWith("237") && number.length === 12
+    ? `+237 ${number.slice(3, 6)} ${number.slice(6, 8)} ${number.slice(8, 10)} ${number.slice(10, 12)}`
+    : number
+      ? `+${number}`
+      : "";
+
 export const channels: Channel[] = [
   { id: "email", label: "Email", href: profile.email ? `mailto:${profile.email}` : "", handle: profile.email },
   {
     id: "whatsapp",
     label: "WhatsApp",
     href: profile.whatsapp ? `https://wa.me/${profile.whatsapp}` : "",
-    handle: profile.whatsapp ? `+${profile.whatsapp}` : "",
+    handle: formatPhone(profile.whatsapp),
   },
-  { id: "linkedin", label: "LinkedIn", href: profile.linkedin, handle: "Profil LinkedIn" },
+  { id: "linkedin", label: "LinkedIn", href: profile.linkedin, handle: "gerom-guershom" },
   { id: "github", label: "GitHub", href: profile.github, handle: "geromguershom-dot" },
   { id: "fiverr", label: "Fiverr", href: profile.fiverr, handle: "@guershom_" },
   { id: "comeup", label: "ComeUp", href: profile.comeup, handle: "GeromGuershom" },
