@@ -17,6 +17,7 @@ import { channels, profile } from "@/data/portfolio";
 import { useTheme } from "@/contexts/ThemeContext";
 import Logo from "./Logo";
 import ScrollProgress from "./ScrollProgress";
+import WhatsAppFloat from "./WhatsAppFloat";
 
 export const channelIcons: Record<string, LucideIcon> = {
   email: Mail,
@@ -147,6 +148,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
+      <WhatsAppFloat />
     </>
   );
 }

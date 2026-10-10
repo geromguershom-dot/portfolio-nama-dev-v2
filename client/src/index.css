@@ -248,3 +248,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
 .portrait figcaption { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; padding: 56px 20px 18px; background: linear-gradient(transparent, rgba(7, 12, 28, 0.88)); color: #fff; font-weight: 600; }
 .portrait figcaption small { font-weight: 400; opacity: 0.8; }
+
+/* ---------- Bouton WhatsApp flottant (toutes les pages) ---------- */
+.wa-float { position: fixed; z-index: 90; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%; background: #25d366; color: #fff; box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45); transition: transform 0.25s var(--ease), box-shadow 0.25s ease; }
+.wa-float:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6); }
+.wa-float:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 6px #25d366; }
+.wa-float::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25d366; animation: wa-pulse 2.6s ease-out infinite; pointer-events: none; }
+.wa-tooltip { position: absolute; right: 72px; top: 50%; padding: 10px 14px; border-radius: 12px; background: var(--text); color: var(--bg); font-size: 13px; font-weight: 500; line-height: 1.4; white-space: nowrap; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25); opacity: 0; transform: translate(8px, -50%); pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; }
+.wa-float:hover .wa-tooltip, .wa-float:focus-visible .wa-tooltip { opacity: 1; transform: translate(0, -50%); }
+@keyframes wa-pulse { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(1.65); opacity: 0; } }
+@media (max-width: 720px) {
+  .wa-float { width: 54px; height: 54px; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); }
+  .wa-tooltip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .wa-float::after { animation: none; display: none; } .wa-float { transition: none; } }
