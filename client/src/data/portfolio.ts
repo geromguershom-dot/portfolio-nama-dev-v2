@@ -100,7 +100,7 @@ export const projects: Project[] = [
     ],
     liveUrl: "https://nutrition-market-c2rp.vercel.app",
     repoUrl: "https://github.com/geromguershom-dot/nutrition-market",
-  },,
+  },
   {
     id: "bizflow-dashboard",
     title: "BizFlow Dashboard",
