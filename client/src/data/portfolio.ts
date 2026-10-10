@@ -82,19 +82,25 @@ export const projects: Project[] = [
     liveUrl: "", // TODO
     repoUrl: "", // TODO
   },
-  {
+    {
     id: "nutrition-market",
     title: "Nutrition & Market",
     category: "Site vitrine",
-    kind: "Site multi-pages — bien-être & nature",
+    kind: "Site de démonstration multi-pages — santé & nutrition",
+    year: "2026",
     description:
-      "Site complet de 11 pages, blog inclus, avec une identité verte inspirée de la nature. Construit sans outil de build lourd, donc léger et rapide, avec un système de templates Python pour garder le code maintenable.",
-    role: "Conception et développement",
-    stack: ["HTML", "CSS", "JavaScript", "Python (templates)"],
-    cover: "/projects/nutrition-market.svg",
-    liveUrl: "", // TODO
-    repoUrl: "", // TODO
-  },
+      "Projet de démonstration pensé pour les pharmacies et les commerces de santé : 12 pages (boutique, conseils, formations, annonces, blog, contact), un panier dont la commande part directement sur WhatsApp, et une identité verte avec logo sur mesure. Léger et rapide : HTML, CSS et JavaScript natifs, avec un petit générateur de pages en Python pour garder le code maintenable.",
+    role: "Conception, logo et développement",
+    stack: ["HTML", "CSS", "JavaScript", "Python (génération des pages)", "Vercel"],
+    cover: "/projects/nutrition-market-1.webp",
+    screenshots: [
+      "/projects/nutrition-market-1.webp",
+      "/projects/nutrition-market-2.webp",
+      "/projects/nutrition-market-3.webp",
+    ],
+    liveUrl: "https://nutrition-market-c2rp.vercel.app",
+    repoUrl: "https://github.com/geromguershom-dot/nutrition-market",
+  },,
   {
     id: "bizflow-dashboard",
     title: "BizFlow Dashboard",
