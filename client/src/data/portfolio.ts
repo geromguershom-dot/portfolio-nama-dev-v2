@@ -102,6 +102,25 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/geromguershom-dot/nutrition-market",
   },
   {
+    id: "batirium",
+    title: "Batirium",
+    category: "Site vitrine",
+    kind: "Site de démonstration — construction & architecture",
+    year: "2026",
+    description:
+      "Projet de démonstration pour une entreprise de construction et d'architecture : un site multi-pages au design éditorial (accueil plein écran, études de cas, agence, contact), avec transitions entre les pages, filtres de projets et un second micro-site autonome pour un studio de coiffure. Sans framework : HTML, CSS et JavaScript natifs, responsive et rapide.",
+    role: "Conception et développement",
+    stack: ["HTML", "CSS", "JavaScript", "Vercel"],
+    cover: "/projects/batirium-1.webp",
+    screenshots: [
+      "/projects/batirium-1.webp",
+      "/projects/batirium-2.webp",
+      "/projects/batirium-3.webp",
+    ],
+    liveUrl: "", // TODO — adresse Vercel de Batirium
+    repoUrl: "https://github.com/geromguershom-dot/batirium",
+  },
+  {
     id: "bizflow-dashboard",
     title: "BizFlow Dashboard",
     category: "Application",
