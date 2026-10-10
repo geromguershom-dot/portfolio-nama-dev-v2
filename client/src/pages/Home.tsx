@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, Check, Code2, Layout, PenTool, Rocket, Search, Server, ShoppingCart, type LucideIcon } from "lucide-react";
 import { Link } from "wouter";
 import HeroOrb from "@/components/HeroOrb";
+import Portrait from "@/components/Portrait";
 import { ProjectCard } from "@/components/ProjectCard";
 import SiteLayout from "@/components/SiteLayout";
 import TechIcon, { type TechName } from "@/components/TechIcon";
@@ -151,13 +152,16 @@ export default function Home() {
               </Link>
             </p>
           </div>
-          <div className="stats">
-            {stats.map((stat) => (
-              <div className="stat card reveal" key={stat.label}>
-                <strong className="grad">{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-            ))}
+          <div className="about-side">
+            <Portrait />
+            <div className="stats">
+              {stats.map((stat) => (
+                <div className="stat card reveal" key={stat.label}>
+                  <strong className="grad">{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

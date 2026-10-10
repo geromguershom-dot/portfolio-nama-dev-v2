@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import Portrait from "@/components/Portrait";
 import SiteLayout from "@/components/SiteLayout";
 import { profile, skills, stats, timeline } from "@/data/portfolio";
 
@@ -30,13 +31,16 @@ export default function AboutPage() {
               </Link>
             </p>
           </div>
-          <div className="stats">
-            {stats.map((stat) => (
-              <div className="stat card" key={stat.label}>
-                <strong className="grad">{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-            ))}
+          <div className="about-side">
+            <Portrait />
+            <div className="stats">
+              {stats.map((stat) => (
+                <div className="stat card" key={stat.label}>
+                  <strong className="grad">{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="container timeline" aria-label="Parcours">

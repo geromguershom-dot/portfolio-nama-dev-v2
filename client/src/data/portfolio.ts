@@ -24,7 +24,7 @@ export const profile = {
   whatsapp: "237682091580", // format international sans + ni espaces
   linkedin: "https://www.linkedin.com/in/gerom-guershom-4802203b9",
   comeup: "", // lien complet de ton profil ComeUp
-  photo: "", // ex. "/photo.jpg" (fichier à placer dans client/public/)
+  photo: "/photo.webp", // fichier dans client/public/
 
   github: "https://github.com/geromguershom-dot",
   fiverr: "", // TODO — remets https://www.fiverr.com/guershom_ quand ton profil est en ligne
