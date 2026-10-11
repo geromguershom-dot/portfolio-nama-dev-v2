@@ -117,7 +117,7 @@ export const projects: Project[] = [
       "/projects/batirium-2.webp",
       "/projects/batirium-3.webp",
     ],
-    liveUrl: "", // TODO — adresse Vercel de Batirium
+    liveUrl: "https://batirium.vercel.app",
     repoUrl: "https://github.com/geromguershom-dot/batirium",
   },
   {
